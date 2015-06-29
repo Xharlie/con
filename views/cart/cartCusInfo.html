@@ -1,0 +1,42 @@
+<div id="cartCustInfo" ng-controller="receiverCTLR">
+    <form class="input-group">
+        <div class="input-row">
+            <label>收货人:</label>
+            <input type="text" xlabel ng-transclude checker="isNotEmpty" checkee="receiver.name" btn-pass="receiverError" placeholder="请填写收货人姓名" ng-model="receiver.name" />
+        </div>
+        <div class="input-row">
+            <label>联系电话:</label>
+            <input xlabel ng-transclude checker="isNotEmpty|isNumber" checkee="receiver.phone" btn-pass="receiverError" type="number" placeholder="请填写电话号码" ng-model="receiver.phone"/>
+        </div>
+        <div class="input-row">
+            <label>省份:</label>
+            <select ng-model="check.province"
+                    ng-change = "updateProvince(check.province);"
+                    ng-options="province as province.name for province in provinceNcity" />
+        </div>
+        <div class="input-row">
+            <label>城市:</label>
+            <select ng-model="check.city"
+                    ng-change = "updateCity(check.city)"
+                    ng-options="city as city.name for city in check.province.city" />
+        </div>
+        <div class="input-row">
+            <label>区县:</label>
+            <select ng-model="check.area"
+                    ng-change = "updateArea(check.area)"
+                    ng-options="area as area.name for area in check.city.area" />
+        </div>
+        <div class="input-row" style="border-bottom:none;">
+            <label>详细地址:</label>
+            <textarea rows="3" type="text" xlabel ng-transclude checker="isNotEmpty" checkee="receiver.address" btn-pass="receiverError" placeholder="街道或小区及门牌号" ng-model="receiver.address"/></textarea>
+        </div>
+        <div style="padding:15px;">
+            <button class="btn btn-block btn-primary" ng-click="save()" ng-if="receiverError ==0 || receiverError == null">
+                保存收货地址
+            </button>
+            <button class="btn btn-block btn-disabled" ng-if="receiverError !=0 && receiverError != null">
+                请填好信息再保存
+            </button>
+        </div>
+    </form>
+</div>

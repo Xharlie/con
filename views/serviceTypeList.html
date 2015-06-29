@@ -1,0 +1,20 @@
+<div style="margin-bottom: 400px;">
+    <header class="bar bar-nav hidden" style="position: relative;">
+        <h1 class="title">京华酒店代购</h1>
+    </header>
+   <!-- <div class="card card-item" style="background-color: #d9edf7;color: #31708f;padding:10px;border-radius:6px;border: 1px solid #bce8f1;">酒店WIFI密码:4006658158
+    </div>
+     start of actual list -->
+    <div class="card card-item" style="background-color: white;color: #bcbcbc;padding: 15px;">
+        <span>酒店WIFI密码：4006658158</span>
+    </div>
+    <div class="card card-item"
+         ng-repeat = "(ID,service) in serviceTypes " >
+        <a href= {{'#/comoboList/:'+ID}} >
+            <img src= {{'/public/images/service/'+service[0].SRVC_TP_PIC}} id="twoByOne"
+                 width="100%">
+        </a>
+    </div>
+</div>
+
+

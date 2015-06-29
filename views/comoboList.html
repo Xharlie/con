@@ -1,0 +1,38 @@
+<div>
+    <header class="bar bar-nav" style="position: relative;">
+        <a class="pull-left" href="#/serviceTypeList" >
+            <span class="icon icon-left-nav"></span>
+        </a>
+        <h1 class="title">{{title}}</h1>
+    </header>
+    <div class="content-padded-half">
+        <ul class="box-view">
+            <li class="box-view-cell" id="twoByThree" ng-repeat="cmb in $parent.combos" >
+                <script>
+                    $("#twoByThree").height($("#twoByThree").width()*1.7);
+                </script>
+                <div>
+                    <img src={{'/public/images/combo/'+cmb.CMB_PIC}}>
+                    <div class="content-padded">
+                        <div><label class="item-brand">{{cmb.CMB_BRND}}</label></div>
+                        <div><label class="item-name">{{cmb.CMB_NM}}</label></div>
+                        <div>
+                            <label class="item-price-crossed">¥{{cmb.CMB_ORGN_PRC}}元</label>
+                            <label class="item-price">¥{{cmb.CMB_PRC}}元</label>
+                        </div>
+                    </div>
+                </div>
+                <a onclick="event.preventDefault();"
+                   ng-click="addCombo(cmb)"
+                   ng-if="cmb.selected != 'T' ">
+                   <img class="pull-right" src="/public/images/general/add.png">
+                </a>
+                <a onclick="event.preventDefault();"
+                   ng-click="removeCombo(cmb)"
+                   ng-if="cmb.selected == 'T' ">
+                   <img class="pull-right" src="/public/images/general/tick.png">
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

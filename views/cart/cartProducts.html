@@ -1,0 +1,48 @@
+<div id="cartProducts">
+    <div class="" style="padding-bottom:100px;">
+        <ul class="table-view" >
+            <li class="table-view-cell media" ng-repeat="(ID, cmb) in cart"
+                ng-controller="cmbInCartCtrl" ng-swipe-left="showDelete = true" ng-swipe-right="showDelete = false">
+                <div>
+                    <img class="media-object pull-left item-pic" src={{'/public/images/combo/'+cmb.CMB_PIC}}>
+                    <div class="media-body">
+                        <div>
+                            <label class="item-brand">{{cmb.CMB_BRND}}</label>
+                            <label class="pull-right item-price" style="font-size:1.25em;">¥{{cmb.CMB_PRC}}</label>
+                        </div>
+                        <div class="item-name">{{cmb.CMB_NM}}</div>
+                        <div class="item-dscrpt">{{cmb.CMB_DSCRPT}}</div>
+                        <!--<div class="item-rating">
+                            <span class="item-stars"></span>
+                        </div> -->
+                        <div>
+                            <select  class="btn btn-default" ng-model="cmb.amount"
+                                     ng-options="num as num for num in limitArray" >
+                            </select>
+                            <a ng-click="removeCmb(cmb)" class="pull-right">
+                                <img class="pull-right" src="/public/images/general/trashCan.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+<!--
+    <div class="bar bar-standard bar-footer" style="overflow:hidden;">
+        <button class="btn btn-danger hidden"  ng-click="cleanup()">
+            <span>清空购物车</span>
+        </button>
+        <button class="btn btn-primary btn-block"  ng-click="pageChange('orderInfo') " ng-if="(infoError == '0' || infoError == null) && !success">
+            确认购买
+        </button>
+        <button ng-if="(infoError != '0' && infoError != null) && !success" class="btn btn-disabled btn-block">
+            请修改信息再发送
+        </button>
+        <button ng-if="success" class="btn btn-positive btn-block">
+            下单成功
+        </button>
+    </div>
+    -->
+
+</div>

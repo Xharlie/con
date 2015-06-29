@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="./css/ratchet.css" rel="stylesheet">
+    <link href="./css/customized.css" rel="stylesheet">
+
+    <!-- Include the compiled Ratchet JS -->
+    <script src="./js/ratchet.min.js"></script>
+
+  </head>
+  <body>
+    <!-- Make sure all your bars are the first things in your <body> -->
+    <header class="bar bar-nav">
+      <h1 class="title">MiaMia</h1>
+    </header>
+
+    <nav class="bar bar-tab">
+      <a href="#shoppingCart">
+        <div>
+          <p>0件商品合计¥0元
+          <button class="btn btn-disabled pull-right">请选择商品先</button>
+          </p>
+        </div>
+      </a>
+    </nav>
+
+    <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+    <div class="content" style="width:100%;">
+
+      <!-- start of actual list -->
+      <div class="card card-item">
+        <a href="category1.html" data-transition="slide-in">
+          <img src="./prototype/images/card1.png">
+        </a>
+      </div>
+      <div class="card card-item">
+        <a href="category1.html" data-transition="slide-in">
+          <img src="./prototype/images/card2.png">
+        </a>
+      </div>
+      <div class="card card-item">
+        <a href="category1.html" data-transition="slide-in">
+          <img src="./prototype/images/card3.png">
+        </a>
+      </div>
+      <div class="card card-item">
+        <a href="category1.html" data-transition="slide-in">
+          <img src="./prototype/images/card4.png">
+        </a>
+      </div>
+      
+    </div>
+
+    <!-- freaking modals not working for now -->
+    <div id="shoppingCart" class="modal">
+      <header class="bar bar-nav">
+        <a class="icon icon-close pull-right" href="#shoppingCart"></a>
+        <h1 class="title">商品篮子</h1>
+      </header>
+
+      <div class="content">
+        <div class="content-padded">
+          <h5>哎呀！商品篮子现在还是空的。请选择商品，30分钟内送达房间！</h5>
+          <!--<ul class="table-view">
+            <li class="table-view-cell">凉皮肉夹馍套餐 <span class="badge">1</span></li> 
+          </ul>-->
+          <button class="btn btn-disabled btn-block">请选择商品先</button>
+        </div>
+      </div>
+    </div>
+  <!-- end of modal -->
+
+  </body>
+</html>

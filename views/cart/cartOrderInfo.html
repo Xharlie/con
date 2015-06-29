@@ -1,0 +1,64 @@
+<div id="cartOrderInfo">
+    <div>
+        <ul class="table-view card">
+            <li class="table-view-cell card-item">
+                <a class="info-address navigate-right" cartStage=='cusInfo' ng-click="pageChange('cusInfo')" >
+                    <div class="pull-right"></div>
+                    <div>
+                        <label >{{(orderInfo.receiver.name!="")?orderInfo.receiver.name:'收货人'}}</label>
+                        <label >{{(orderInfo.receiver.phone!="")?orderInfo.receiver.phone:'电话'}}</label>
+                    </div>
+                    <div style="width:70%;padding-top:10px;">
+                        <p class="item-dscrpt">{{(orderInfo.receiver.fullAddress!="")?orderInfo.receiver.fullAddress:'请填写地址信息'}}</p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul class="table-view card">
+            <li class="table-view-cell card-item">
+                <a class="info-item navigate-right">
+                    <span class="pull-right badge" ng-click="pageChange('products')"> {{$parent.inCart.sumAmount}} </span>
+                    <div style="width:75%;overflow-x:scroll;height: 44px;">
+                        <img class="pull-left" ng-repeat="(ID, cmb) in cart" class="media-object" src={{'/public/images/combo/'+cmb.CMB_PIC}}>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="info-payment">
+        <ul class="table-view">
+            <li class="table-view-cell">
+                <div>支付方式</div>
+                <div class="content-padded-half pull-left"
+                    ng-repeat="paymethod in paymethods">
+                    <button class="btn" ng-click="selectPayMethod(orderInfo.paymethodSelected,paymethod)" ng-class="paymethod.buttonClass">{{paymethod.PAY_MTHD_NM}}</button>
+                </div>
+                <div class="item-dscrpt content-padded-half" style="width:100%;">
+                    <label>{{orderInfo.paymethodSelected.PAY_MTHD_DSCRPT}}</label>
+                </div>
+            </li>
+            <form class="input-group">
+                <div class="input-row" ng-if="orderInfo.paymethodSelected.PAY_MTHD_NM=='酒店挂账'">
+                    <label xlabel ng-transclude checker="isNotEmpty" checkee="orderInfo.RM_ID" btn-pass="infoError" >房间号</label>
+                    <input type="text" placeholder="请填写房间号" ng-model="orderInfo.RM_ID"  ／>
+                </div>
+            </form>
+        </ul>
+    </div>
+    <div class="info-price">
+        <ul class="table-view">
+            <li class="table-view-cell">
+                <div>
+                    <label >商品总价:</label>
+                    <div class="pull-right item-price">¥<label render-label bindee="Limit(orderInfo.payInDue)"></label></div>
+                </div>
+            </li>
+            <li class="table-view-cell">
+                <div style="margin-bottom:60px">
+                    <label >运费:</label>
+                    <div class="pull-right item-price">¥<label >{{Limit(orderInfo.transFee)}}</label></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

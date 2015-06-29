@@ -1,0 +1,14 @@
+<div id="cartConfirm" class="card">
+    <h3><span class="icon icon-check"></span>下单成功!</h3>
+    <ul>
+        <li>订单号码: {{orderInfo.tran_id}}</li>
+        <li>消费总计: {{orderInfo.payInTotal}}</li>
+        <li ng-if="paymethodSelected.PAY_MTHD_NM=='酒店挂账'">挂账房间: {{orderInfo.RM_ID}}</li>
+        <li>收货人: {{orderInfo.receiver.name}}</li>
+        <li>联系电话: {{orderInfo.receiver.phone}}</li>
+        <li>收货地址: {{orderInfo.receiver.fullAddress}}</li>
+    </ul>
+    <button class="btn btn-primary btn-block" ng-click="cartDown()">
+        返回商品列表
+    </button>
+</div>
