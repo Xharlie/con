@@ -30,6 +30,7 @@ Da.controller('receiverCTLR', function($scope, $http,orderDetailFactory) {
                                                             ,$scope.receiver.city
                                                             ,$scope.receiver.area
                                                             ,$scope.receiver.address);
+            orderDetailFactory.pushReceiverInfo($scope.$parent.orderInfo.receiver);
             $scope.$parent.pageChange('orderInfo');
             $scope.$parent.testRecNoInfo();
         }

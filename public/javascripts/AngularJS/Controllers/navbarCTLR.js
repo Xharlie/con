@@ -1,7 +1,7 @@
 /**
  * Created by charlie on 4/12/15.
  */
-Da.controller('navbarCTLR', function($scope,$rootScope, userOrderFactory,$http, $cookies){
+Da.controller('navbarCTLR', function($scope,$rootScope){
     $rootScope.cartOpen = false;
     $scope.cartUp = function() {
         $rootScope.cartOpen = true;

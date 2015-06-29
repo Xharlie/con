@@ -2,7 +2,7 @@
  * Created by charlie on 5/27/15.
  */
 
-Da.controller('xlabelController',function ($scope, $http,$timeout) {
+Da.controller('xlabelController',function ($scope) {
     var filters = $scope.checker.split("|");
     $scope.checkAll=function(value){
         for(var i=0;i<filters.length;i++){

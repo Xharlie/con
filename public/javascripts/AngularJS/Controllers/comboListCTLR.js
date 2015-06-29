@@ -2,20 +2,18 @@
  * Created by charlie on 4/2/15.
  */
 
-Da.controller('comboListCTLR', function($scope, $http, $rootScope, serviceTypeFactory, userOrderFactory,$cookies){
+Da.controller('comboListCTLR', function($scope, $http, $rootScope, serviceTypeFactory, userOrderFactory){
 
     /*------------------------------ page control --------------------------------*/
     $scope.addCombo =function(cmb){
         userOrderFactory.pushCart(cmb);
         cmb.selected = 'T';
-        //cmb.backStyle ={'background-color':'#EEE'};
         $scope.$parent.inCart.sumAmount = userOrderFactory.cartQuan();
     }
 
     $scope.removeCombo =function(cmb){
         userOrderFactory.pullCart(cmb);
         cmb.selected = 'F';
-        //cmb.backStyle ={};
         $scope.$parent.inCart.sumAmount = userOrderFactory.cartQuan();
     }
 

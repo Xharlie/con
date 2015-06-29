@@ -2,7 +2,7 @@
  * Created by charlie on 5/7/15.
  */
 
-Da.controller('cartCTLR', function($scope, $http, $rootScope, userOrderFactory,orderDetailFactory, $cookies,$timeout) {
+Da.controller('cartCTLR', function($scope, $http, $rootScope, userOrderFactory,orderDetailFactory,$timeout) {
 
     /********************************************     validation     ***************************************************/
     $scope.hasError = function(btnPass){
@@ -13,19 +13,7 @@ Da.controller('cartCTLR', function($scope, $http, $rootScope, userOrderFactory,o
         eval("$scope."+btnPass+"--");
     }
     /******************************-------------- logic control------------------- *************************************/
-/*
-    $scope.addAmount = function(cmb){
-        cmb.amount++;
-        $cookies[cmb.CMB_ID]= JSON.stringify(cmb);
-        $scope.$parent.inCart.sumAmount = userOrderFactory.cartQuan();
-    }
 
-    $scope.reduceAmount = function(cmb){
-        cmb.amount--;
-        $cookies[cmb.CMB_ID]= JSON.stringify(cmb);
-        $scope.$parent.inCart.sumAmount = userOrderFactory.cartQuan();
-    }
-*/
     $scope.Limit = function(num){
         return Number(parseFloat(num).toFixed(2));
     }
@@ -166,7 +154,7 @@ Da.controller('cartCTLR', function($scope, $http, $rootScope, userOrderFactory,o
     }
 
     /***************************** -------------- init variable------------------- *******************/
-    $scope.cart = basicUtil.objDecode($cookies);
+    $scope.cart = basicUtil.objDecode(userOrderFactory.getCart());
     $scope.paymethods = [];
     $scope.success = false;
     $scope.cartStage = 'products';
@@ -178,15 +166,7 @@ Da.controller('cartCTLR', function($scope, $http, $rootScope, userOrderFactory,o
         area: null
     }
     $scope.orderInfo = {
-        receiver:{
-            name:"",
-            phone:"",
-            province:"",
-            city:"",
-            area:"",
-            address:"",
-            fullAddress:""
-        },
+        receiver:orderDetailFactory.getReceiverInfo(),
         tran_id:"",
         paymethodSelected:"",
         RM_ID:"",
@@ -194,13 +174,14 @@ Da.controller('cartCTLR', function($scope, $http, $rootScope, userOrderFactory,o
         payInDue: basicUtil.Limit($scope.calculatePay($scope.cart)),
         payInTotal: 0
     }
+
     getPaymentMethods(2);
     $scope.transFeeEstimate();
 
 })
 
 /************************                       single Master Pay sub controller                      ***********************/
-    .controller('cmbInCartCtrl', function ($scope,$cookies,userOrderFactory) {
+    .controller('cmbInCartCtrl', function ($scope,userOrderFactory) {
         $scope.$watch('cmb.amount',
             function(newValue, oldValue) {
                 if(newValue==oldValue) return;
@@ -209,7 +190,7 @@ Da.controller('cartCTLR', function($scope, $http, $rootScope, userOrderFactory,o
                 }else{
                     $scope.$parent.cart[$scope.cmb.CMB_ID].amountColor = null;
                 }
-                $cookies[$scope.cmb.CMB_ID] = JSON.stringify($scope.cmb);
+                userOrderFactory.replaceCart($scope.cmb.CMB_ID,$scope.cmb);
                 $scope.$parent.$parent.inCart.sumAmount = userOrderFactory.cartQuan();
                 $scope.$parent.updatePayInDue();
 

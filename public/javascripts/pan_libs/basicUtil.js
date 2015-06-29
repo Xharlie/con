@@ -3,6 +3,9 @@ var show =function(showee){
 }
 
 var basicUtil = {
+    deepCopy: function(input){
+        return JSON.parse(JSON.stringify(input));
+    },
     objDecode: function (ob) {
         var obAfter ={};
         for (var key in ob) {
